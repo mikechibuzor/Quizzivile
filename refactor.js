@@ -1,10 +1,15 @@
+//contains methods that handles the fetching of data 
 class HttpRequest {
     constructor(method, url){
         this.method = method;
         this.url = url;  
     }
     fetchApi(url){
-       return fetch(url)
+       return fetch(url, {
+           headers: {
+               'Content-Type': 'application/json'
+           }
+       })
         .then(response => response.json());
     }
     async fetchData_RendersData(){
@@ -17,17 +22,16 @@ class HttpRequest {
         }
     }
 }
+//not a very necessary class but it is here still to help structure the data
 class App{
     constructor(questions){
         this.questionsList = questions;
         this.score = 0;
         this.answers = questions.answers;
     }
-    increaseScore(){
-        return this.score++;
-    }
 }
 class AppUI{
+    //this method helps to randomize the options
     static randOptions(){
         let randomOptions = [];
         while(randomOptions.length < 4){
@@ -38,6 +42,7 @@ class AppUI{
         }
         return randomOptions;
     }
+    //responsible for creating the display content on the DOM for a particular question object
     static displayQuestionContent(questionText, options, index, answer){
         let optionss = [...options, answer ];
         const content = document.querySelector('.content');
@@ -59,17 +64,20 @@ class AppUI{
         }
         content.appendChild(templateBody);
     }
+    //loops through all the question data and helps renders them to the DOM
     static displayQuestionContentHandler(arrayOfQuestions){
         arrayOfQuestions.forEach( (question, index) =>{
             this.displayQuestionContent(question.question, question.incorrect_answers, index, question.correct_answer);
         });   
     }
+    //attached as an event listener to the next and previous button; gets the  next or previous question to be displayed
     static contentToAppear(parent, content){
         parent.classList.add('innactive');
         parent.classList.remove('active');
         content.classList.add("active");
         content.classList.remove('innactive');
        }
+    //handles the submit. this function fires when the submit button is clicked or when the time runs out
     static submitHandler(){
         const options = document.querySelectorAll('.options');
         options.forEach( (option, index) =>{
@@ -84,23 +92,35 @@ class AppUI{
         });
         console.log(score, arrOfAnswers);
     }
+    //helps get all of the answers from the fetched question data
     static getAllAnswers(d){
         d.results.forEach( question=> {
             arrOfAnswers = [...arrOfAnswers, question.correct_answer];
         } );
     }
 }
+//from the name, this class tells you it helps to validate the user selections
 class validateUserSelections{
     static validateSelections(category, numOfQuest, difficulty){
-        if(category && numOfQuest && difficulty){
+        if(category && Number(numOfQuest) > 0 && Number(numOfQuest) < 51 && difficulty){
             return true;
         }
         else{
-            alert('Please leave nothing blank');
+            if(numOfQuest === ''){
+                alert('Please select a number between 1 - 50');
+            }
+            else if(Number(numOfQuest) < 0){
+                alert('Amount cannot be a negative number');
+            }
             return false;
         }
     }
 }
+/*
+This class does two things:
+    -Handles and displays the timer on the DOM
+    -Submits the quiz when the time is up
+*/
 class Time{
     static timer(n){
         const dispTime = document.querySelector("#countDown");
@@ -125,22 +145,23 @@ class Time{
         submit.click();
     }
 }
+//globally declared variables that, well, we get to use in the submit methods
 let arrOfAnswers = [];
 let score = 0;
 let timeAutoSubmit = true;
 
 document.querySelector('#startButton').addEventListener('click', ()=>{
-    document.querySelector('.firstPage').style.display = 'none';
-    document.querySelector('.container').classList.remove('hide');
+    //code below gets the user's selections
     const category = document.querySelector('#category').value;
     const numberOfQuestions = document.querySelector('#number').value;
     const difficulty = document.querySelector('#difficulty').value;
 
     if(validateUserSelections.validateSelections(category, numberOfQuestions, difficulty)){
+        document.querySelector('.firstPage').style.display = 'none';
+        document.querySelector('.container').classList.remove('hide');
         const url = `https://opentdb.com/api.php?amount=${numberOfQuestions}&category=${category}&difficulty=${difficulty}&type=multiple`;
         const HttpRe = new HttpRequest('GET', url);
         const dataFetched = HttpRe.fetchData_RendersData();
-        console.log(dataFetched);
         dataFetched.then(data => {
             AppUI.displayQuestionContentHandler(data.results);
             AppUI.getAllAnswers(data);
@@ -184,7 +205,7 @@ document.querySelector('#startButton').addEventListener('click', ()=>{
         });
     } 
 });
-
+//What can i say other than the function name
 const animateFirstPage = ()=>{
    document.querySelector('.firstPage').classList.toggle('move');
 }
