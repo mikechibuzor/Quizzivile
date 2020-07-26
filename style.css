@@ -9,6 +9,7 @@ body{
     font-family: "Bell MT", sans-serif;
 }
 
+/* Styling for the container and it's child elements begins here*/
 .container{
     max-width: 1024px;
     margin: 0 auto;
@@ -129,6 +130,9 @@ body{
 .container .content .cont #option div label:hover{
     transform: scale(1.015);
 }
+/*End of container styling*/
+
+/*styling for the footer and its child elements begins here*/
 .footer{
     display: flex;
     flex-direction: row;
@@ -162,6 +166,9 @@ body{
 .footer div:hover::after{
     height: 180%;
 }
+/*Footer styling ends here*/
+
+/*Responsive Design*/
 @media (orientation: landscape and max-width 1024px){
     .container .header{
         height: 15vh;
