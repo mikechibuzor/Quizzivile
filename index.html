@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="refactor.css" rel="stylesheet" type="text/css" />
+    <title>Quiz</title>
+</head>
+<body>
+    <template id="template">
+        <div class="cont innactive">
+            <div id="displayText">
+                    <p id="questText"></p>
+            </div>
+            <div id="option" class="options">
+                <div>
+                    <input type="radio" class="opt"/>
+                    <label></label>
+                </div>
+                <div>
+                    <input type="radio" class="opt"/>
+                    <label></label>
+                </div>
+                <div>
+                    <input type="radio" class="opt"/>
+                    <label></label>
+                </div>
+                <div>
+                    <input type="radio" class="opt"/>
+                    <label></label>
+                </div>
+            </div>
+            <div class="footer">
+                    <div type="button" value="Previous"  id="previous" class="previous" >Previous</div>
+                    <div type="button" value="Next" id="next" class="Next">Next</div>                    
+            </div>
+        </div>
+    </template>
+    <div class="firstPage">
+        <section id="firstSection">
+            <div class="firstSection">
+                <div class="select">
+                    <h3>Category:</h3>
+                    <select name="category" id="category">
+                            <!-- <option value="Any Category">Any Category</option> -->
+                            <option value="9">General Knowledge</option>
+                            <option value="10">Entertainment: Books</option>
+                            <option value="11">Entertainment: Film</option>
+                            <option value="12">Entertainment: Music</option>
+                            <option value="13">Entertainment: Musicals & Theatres</option>
+                            <option value="14">Entertainment: Television</option>
+                            <option value="15">Entertainment: Video Games</option>
+                            <option value="16">Entertainment: Board Games</option>
+                            <option value="17">Science & Nature</option>
+                            <option value="18">Science: Computers</option>
+                            <option value="19">Science: Mathematics</option>
+                            <option value="20">Mythology</option>
+                            <option value="21">Sports</option>
+                            <option value="22">Geography</option>
+                            <option value="23">History</option>
+                            <option value="24">Politics</option>
+                            <option value="25">Art</option>
+                            <option value="26">Celebrities</option>
+                            <option value="27">Animals</option>
+                            <option value="28">Vehicles</option>
+                            <option value="29">Entertainment: Comics</option>
+                            <option value="30">Science: Gadgets</option>
+                            <option value="31">Entertainment: Japanese Anime & Manga</option>
+                            <option value="32">Cartoon & Animations</option>
+                    </select>
+                </div>
+                <div class="number">
+                    <h3>Number of Questions</h3>
+                    <input type="number" id="number">
+                </div>
+                <div class="difficulty">
+                    <h3>Difficulty:</h3>
+                    <select name="difficulty" id="difficulty">
+                        <option value="easy">Easy</option>
+                        <option value="medium">Medium</option>
+                        <option value="hard">Hard</option>
+                    </select>
+                </div>
+                <div class="start">
+                    <div id="startButton">Start Quiz</div>
+                </div>
+            </div>
+        </section>
+        <section>
+            <p>After our own Likeness</p>
+            <p>After our own Likeness</p>
+            <p>After our own Likeness</p>
+            <p>After our own Likeness</p>
+            <p>After our own Likeness</p>
+        </section>
+    </div>
+    <div class="container hide">
+        <div class="header">
+            <h1>Quiz </h1>
+            <h3 id="countDown">Time</h3>
+        </div>
+        <div class="content"> 
+        </div>
+    </div>
+    <script src="refactor.js"></script>
+</body>
+</html>
