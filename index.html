@@ -4,10 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="styles.css" rel="stylesheet" type="text/css" />
+    <script src="Script/script.js" defer></script>
+    <link href="CSS/styles.css" rel="stylesheet" type="text/css" />
     <title>Quiz</title>
 </head>
 <body>
+    <!--Template here is used by JavaScript code to help structure each question content data-->
     <template id="template">
         <div class="cont innactive">
             <div id="displayText">
@@ -37,6 +39,7 @@
             </div>
         </div>
     </template>
+    <!--More like Landing page or you could call it the first page or whatever you want to call the first elements that displays -->
     <div class="firstPage">
         <section id="firstSection">
             <div class="firstSection">
@@ -87,12 +90,11 @@
                 </div>
             </div>
         </section>
-        <section>
-            <p>After our own Likeness</p>
-            <p>After our own Likeness</p>
-            <p>After our own Likeness</p>
-            <p>After our own Likeness</p>
-            <p>After our own Likeness</p>
+        <section id = "secondSection">
+            <h1>Quiziville</h1>
+            <div class="img">
+
+            </div>
         </section>
     </div>
     <div class="container hide">
@@ -103,6 +105,22 @@
         <div class="content"> 
         </div>
     </div>
-    <script src="refactor.js"></script>
+    <!--After our Submits button get clicked or the time runs out, this page displays-->
+    <div class="lastPage hide">
+        <div class="box">
+            <div class="dispScore">
+                <h3></h3>
+            </div>
+            <div class="questionAnswers">
+                <h3>Answers:</h3>
+            </div>
+            <div class="playerAnswers">
+                <h3>Your Selections:</h3>
+            </div>
+            <div class="anotherTry">
+                <button>Take a re-test?</button>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

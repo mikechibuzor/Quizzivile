@@ -5,11 +5,7 @@ class HttpRequest {
         this.url = url;  
     }
     fetchApi(url){
-       return fetch(url, {
-           headers: {
-               'Content-Type': 'application/json'
-           }
-       })
+       return fetch(url)
         .then(response => response.json());
     }
     async fetchData_RendersData(){
@@ -165,7 +161,11 @@ document.querySelector('#startButton').addEventListener('click', ()=>{
         dataFetched.then(data => {
             AppUI.displayQuestionContentHandler(data.results);
             AppUI.getAllAnswers(data);
-            Time.timer(.9);
+
+            //the logic here uses a nested ternary operator to ascertain what the time will be using the value of the difficulty
+            const timeDeterminer = (difficulty.value === 'easy') ? (numberOfQuestions * 0.16) : (difficulty.value === 'medium') ? 
+            (numberOfQuestions * 0.133) : (numberOfQuestions *  0.33);
+            Time.timer(timeDeterminer);
             const content = document.querySelector('.content').children;
             content[0].querySelector('.previous').style.opacity = 0;
             content[0].querySelector('.previous').style.pointerEvents = 'none';
@@ -200,13 +200,11 @@ document.querySelector('#startButton').addEventListener('click', ()=>{
                     AppUI.contentToAppear(parent, content);
                 });
             });
-
-            
         });
     } 
 });
-//What can i say other than the function name
+//What can i say here, the function name has said it all
 const animateFirstPage = ()=>{
    document.querySelector('.firstPage').classList.toggle('move');
 }
-setInterval(animateFirstPage, 10000 * 6);
+setInterval(animateFirstPage, (10000 * 6) );
