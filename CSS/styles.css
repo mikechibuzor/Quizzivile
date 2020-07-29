@@ -66,8 +66,14 @@ section .firstSection{
     padding: 1rem;
     transform: translateY(-300%);
     background: rgba(0, 0, 0, .37);
+    /* background: rgba(225, 225, 225, .53); */
+    box-shadow: inset 2px 2px 4px rgba(0, 0, 0, .4),
+                inset 4px 4px 8px rgba(0, 0, 0, .3),
+                2px 2px 2px rgba(225, 225, 225, .33);
     animation: drop-down .7s linear forwards;
     animation-delay: 1.5s;
+    border: none;
+    outline: none;
     /* border-radius: .5em .9em 9.9em 9.9em; */
 }
 
@@ -333,7 +339,39 @@ To the guys handling our app's responsivenes, our hats and scarfs are off!
         height: 50vh;
     }
 }
+@media (max-width: 1024px){
+    .firstSection{
+        margin-left: -5vw;
+    }
+    .firstPage.move #firstSection{
+        margin-left: 5vw;
+        transform: translateX(137%);
+    }
+    section .firstSection{
+        transform: translateY(-100vh);
+    }
+    #secondSection{
+        background-size:contain;
+        background-position: center;
+        background-repeat: space;
+    }
+}
 @media (max-width: 768px){
+    .firstPage::before{
+        top: -280%;
+        width: 200%;
+        left: 0;
+        right: 10%;
+    }
+    .firstPage.firstPage.move::before{
+        transform: translateY(2%);
+    }
+    .firstPage.move #firstSection{
+        transform: none;
+    }
+    .firstPage.move section:last-of-type{
+        transform: none;
+    }
     .container .header h1{
         margin-left: 5em;
     }
