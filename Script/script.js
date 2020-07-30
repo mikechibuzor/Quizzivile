@@ -73,16 +73,23 @@ class AppUI{
         content.classList.add("active");
         content.classList.remove('innactive');
        }
-    //handles the submit. this function fires when the submit button is clicked or when the time runs out
+}
+class Submit{
+
+      //handles the submit. this function fires when the submit button is clicked or when the time runs out
     static submitHandler(){
         const options = document.querySelectorAll('.options');
         options.forEach( (option, index) =>{
            const optionTabs = option.querySelectorAll('input');
            optionTabs.forEach( optionTab =>{
                if(optionTab.checked){
+                   playerSelections = [...playerSelections, optionTab.nextElementSibling.textContent];
                     if(optionTab.nextElementSibling.textContent === arrOfAnswers[index]){
                         score++;
                     }
+               }
+               else{
+                   playerSelections = [...playerSelections, "No Selection"];
                }
            })
         });
@@ -93,6 +100,9 @@ class AppUI{
         d.results.forEach( question=> {
             arrOfAnswers = [...arrOfAnswers, question.correct_answer];
         } );
+    }
+    static displaySubmitInfo(){
+        
     }
 }
 //from the name, this class tells you it helps to validate the user selections
@@ -143,6 +153,7 @@ class Time{
 }
 //globally declared variables that, well, we get to use in the submit methods
 let arrOfAnswers = [];
+let playerSelections = [];
 let score = 0;
 let timeAutoSubmit = true;
 
@@ -173,7 +184,7 @@ document.querySelector('#startButton').addEventListener('click', ()=>{
             submit.classList.remove('Next');
             submit.classList.add('submit');
             submit.addEventListener('click',e =>{
-                AppUI.submitHandler();
+                Submit.submitHandler();
                 timeAutoSubmit = false;
 
             });

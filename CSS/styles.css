@@ -46,6 +46,13 @@ and when the class is removed, it comes back to its original position. JavaScrip
 .firstPage.move section:last-of-type{
     transform: translateX(-105%);
 }
+/* .firstPage.move section .firstSection{ */
+    /* border-radius: .9em .5em .5em 9.9em; */
+    /* transform: rotateY(180deg); */
+/* } */
+/* .firstPage.move section .firstSection #startButton{
+    transform: translateX(7rem);
+} */
 
 /*Landing page was splitted into equal halves and the code below applies to both halves*/
 section{
@@ -74,7 +81,9 @@ section .firstSection{
     animation-delay: 1.5s;
     border: none;
     outline: none;
-    /* border-radius: .5em .9em 9.9em 9.9em; */
+    border-radius: .5em .9em 9.9em;
+    transform-style: preserve-3d;
+    transition: all .5s ease-in-out;
 }
 
 @keyframes drop-down{
@@ -130,6 +139,7 @@ input[type="number"]{
     z-index: 12;
     color: white;
     box-shadow: 0px 2px 2px rgba(0, 0, 0, .5);
+    transition: all .5s ease-in-out;
 }
 /*I added an animation here that is not so necessary. to be honest, it isn't at all. but i thought it would be cool to just add
 that here since i only just learnt it from tutorial on youtube*/
@@ -156,9 +166,9 @@ that here since i only just learnt it from tutorial on youtube*/
 }
 /*So the main quiz app gets hidden, not like there is much to show though. its containing elements gets it content when javascript code
 fetches the question data*/
-.container.hide{
+/* .hide{
     display: none;
-}
+} */
 .container{
     max-width: 1024px;
     margin: 0 auto;
@@ -323,8 +333,74 @@ and of course, the submit button in last content being displayed*/
 .footer div:hover::after{
     height: 180%;
 }
-.lastPage.hide{
+.hide{
     display: none;
+}
+.lastPage .overlay{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background: rgba(0, 0, 0, .7);
+    z-index: 100;
+    
+}
+.lastPage .box{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+}
+.lastPage .box .innerBox{
+    border: 1px solid red;
+    padding: 1em;
+    width: 50rem;
+    display: grid;
+    grid-auto-rows: minmax(5em, auto);
+    grid-gap: 1rem;
+    grid-template-columns: 1fr 1fr;
+}
+.lastPage .box .innerBox .dispScore{
+    grid-column: 1/3;
+    border: 1px solid white;
+    background: blue;
+}
+.lastPage .box .innerBox .questionAnswers{
+    grid-column: 1/2;
+    border: 1px solid yellow;
+}
+.lastPage .box .innerBox .playerAnswers{
+    grid-column: 2/3;
+    border: 1px solid yellow;
+}
+.lastPage .box .innerBox .anotherTry{
+    grid-column: 1/3;
+    height: 5rem;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    border: 1px solid yellow;
+}
+.lastPage .box .innerBox .anotherTry button{
+    padding: .5rem;
+    font-family: 'Cursive';
+    outline: none;
+    border: none;
+    color: #eee;
+    border-radius: .2rem;
+    transition: all .5s ease;
+    cursor: pointer;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, .4);
+    background-image: linear-gradient(to right, #000 50%,rgb(24, 19, 19));
+    background-origin: border-box;
+}
+.lastPage .box .innerBox .anotherTry button:hover{
+    background: rgb(214, 214, 208);
+    color: #000;
+}
+.lastPage .box .innerBox .dispScore, .lastPage .box .innerBox .questionAnswers,
+.lastPage .box .innerBox .playerAnswers, .lastPage .box .innerBox .anotherTry{
+    z-index: 101;
 }
 /*
 To the guys handling our app's responsivenes, our hats and scarfs are off!
@@ -368,9 +444,16 @@ To the guys handling our app's responsivenes, our hats and scarfs are off!
     }
     .firstPage.move #firstSection{
         transform: none;
+        margin-left: 0;
     }
     .firstPage.move section:last-of-type{
         transform: none;
+    }
+    .firstSection{
+        margin-left: .5rem;
+    }
+    #secondSection{
+        margin-left: -3rem;
     }
     .container .header h1{
         margin-left: 5em;

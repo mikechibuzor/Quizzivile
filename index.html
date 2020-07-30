@@ -40,7 +40,7 @@
         </div>
     </template>
     <!--More like Landing page or you could call it the first page or whatever you want to call the first elements that displays -->
-    <div class="firstPage">
+    <div class="firstPage hide ">
         <section id="firstSection">
             <div class="firstSection">
                 <div class="select">
@@ -75,7 +75,7 @@
                 </div>
                 <div class="number">
                     <h3>Number of Questions</h3>
-                    <input type="number" id="number">
+                    <input type="number" id="number" min="1" max="50">
                 </div>
                 <div class="difficulty">
                     <h3>Difficulty:</h3>
@@ -106,21 +106,24 @@
         </div>
     </div>
     <!--After our Submits button get clicked or the time runs out, this page displays-->
-    <div class="lastPage hide">
+    <div class="lastPage ">
         <div class="box">
-            <div class="dispScore">
-                <h3></h3>
-            </div>
-            <div class="questionAnswers">
-                <h3>Answers:</h3>
-            </div>
-            <div class="playerAnswers">
-                <h3>Your Selections:</h3>
-            </div>
-            <div class="anotherTry">
-                <button>Take a re-test?</button>
-            </div>
+           <div class="innerBox">
+                <div class="dispScore">
+                    <h3>30</h3>
+                </div>
+                <div class="questionAnswers">
+                    <h3>Answers:</h3>
+                </div>
+                <div class="playerAnswers">
+                    <h3>Your Selections:</h3>
+                </div>
+                <div class="anotherTry">
+                    <button>Take a re-test?</button>
+                </div>
+           </div>
         </div>
+        <div class="overlay"></div>
     </div>
 </body>
 </html>
