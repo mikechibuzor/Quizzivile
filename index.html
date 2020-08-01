@@ -39,8 +39,9 @@
             </div>
         </div>
     </template>
+
     <!--More like Landing page or you could call it the first page or whatever you want to call the first elements that displays -->
-    <div class="firstPage hide ">
+    <div class="firstPage ">
         <section id="firstSection">
             <div class="firstSection">
                 <div class="select">
@@ -93,7 +94,7 @@
         <section id = "secondSection">
             <h1>Quiziville</h1>
             <div class="img">
-
+                <p>You think you </p>
             </div>
         </section>
     </div>
@@ -106,11 +107,23 @@
         </div>
     </div>
     <!--After our Submits button get clicked or the time runs out, this page displays-->
-    <div class="lastPage ">
+    <div class="lastPage hide">
         <div class="box">
            <div class="innerBox">
                 <div class="dispScore">
-                    <h3>30</h3>
+                    <div class="dispHead">
+                        <h3>Your Score: 30</h3>
+                    </div>
+                    <div class="moreInfo">
+                        <h4>More Info</h4>
+                        <p>Category:</p>
+                        <p>Number of Questions:</p>
+                        <p>Difficulty:</p>
+                        <p>Time Elapsed:</p>
+                    </div>
+                    <div class="imageCheer">
+                        <img src="SVG/bg9-2.svg" alt="">
+                    </div>
                 </div>
                 <div class="questionAnswers">
                     <h3>Answers:</h3>
@@ -119,7 +132,7 @@
                     <h3>Your Selections:</h3>
                 </div>
                 <div class="anotherTry">
-                    <button>Take a re-test?</button>
+                    <button class="re-test">Take a re-test?</button>
                 </div>
            </div>
         </div>

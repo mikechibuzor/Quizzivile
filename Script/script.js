@@ -77,7 +77,8 @@ class AppUI{
 class Submit{
 
       //handles the submit. this function fires when the submit button is clicked or when the time runs out
-    static submitHandler(){
+    static submitHandler(cat, numQ, diff, time){
+        clearInterval(clearInt);
         const options = document.querySelectorAll('.options');
         options.forEach( (option, index) =>{
            const optionTabs = option.querySelectorAll('input');
@@ -93,6 +94,7 @@ class Submit{
                }
            })
         });
+        Submit.displaySubmitInfo(cat, numQ, diff, time);
         console.log(score, arrOfAnswers);
     }
     //helps get all of the answers from the fetched question data
@@ -101,8 +103,31 @@ class Submit{
             arrOfAnswers = [...arrOfAnswers, question.correct_answer];
         } );
     }
-    static displaySubmitInfo(){
-        
+    static displaySubmitInfo(cat, numQ, diff, time){
+        document.querySelector('.container').classList.add('hide');
+        const lastPage = document.querySelector('.lastPage');
+        const questionAnswers = document.querySelector('.questionAnswers');
+        const playerAnswerss = document.querySelector('.playerAnswers');
+        lastPage.classList.remove('hide');
+
+        lastPage.querySelector('.dispScore h3').textContent = `Your Score: ${score}`;
+        const pEl = lastPage.querySelectorAll('.moreInfo p');
+        pEl[0].textContent =    `Category: ${cat}`;
+        pEl[1].textContent =   `Number of Questions: ${numQ}`;
+        pEl[2].textContent =   `Difficulty: ${diff}`;
+        pEl[3].textContent =    `Time Elapsed: ${time}`;
+
+        arrOfAnswers.forEach( (answer, index)=>{
+            const p = document.createElement('p');
+            p.textContent = `${index + 1}. ${answer}`;
+            questionAnswers.append(p);
+        });
+
+        playerSelectionss.forEach((answer, index)=>{
+            const p = document.createElement('p');
+            p.textContent = `${index + 1}. ${answer}`;
+            playerAnswers.append(p);
+        });
     }
 }
 //from the name, this class tells you it helps to validate the user selections
@@ -131,13 +156,13 @@ class Time{
     static timer(n){
         const dispTime = document.querySelector("#countDown");
         let time = n * 60;
-        let t = setInterval(function(){
+        clearInt = setInterval(function(){
         let minutes = Math.floor(time/60);
         let seconds = time % 60;
         dispTime.innerHTML = `${minutes}:${seconds}`;
         time-= 1; 
         if(time < 0){
-            clearInterval(t);
+            clearInterval(clearInt);
             if(timeAutoSubmit){
                 Time.endOfTimeSubmit();
             }
@@ -152,6 +177,7 @@ class Time{
     }
 }
 //globally declared variables that, well, we get to use in the submit methods
+let clearInt;
 let arrOfAnswers = [];
 let playerSelections = [];
 let score = 0;
@@ -164,19 +190,19 @@ document.querySelector('#startButton').addEventListener('click', ()=>{
     const difficulty = document.querySelector('#difficulty').value;
 
     if(validateUserSelections.validateSelections(category, numberOfQuestions, difficulty)){
-        document.querySelector('.firstPage').style.display = 'none';
+        document.querySelector('.firstPage').classList.add('hide');
         document.querySelector('.container').classList.remove('hide');
         const url = `https://opentdb.com/api.php?amount=${numberOfQuestions}&category=${category}&difficulty=${difficulty}&type=multiple`;
         const HttpRe = new HttpRequest('GET', url);
         const dataFetched = HttpRe.fetchData_RendersData();
         dataFetched.then(data => {
             AppUI.displayQuestionContentHandler(data.results);
-            AppUI.getAllAnswers(data);
+            Submit.getAllAnswers(data);
 
             //the logic here uses a nested ternary operator to ascertain what the time will be using the value of the difficulty
             const timeDeterminer = (difficulty.value === 'easy') ? (numberOfQuestions * 0.16) : (difficulty.value === 'medium') ? 
             (numberOfQuestions * 0.133) : (numberOfQuestions *  0.33);
-            Time.timer(timeDeterminer);
+            Time.timer(Math.floor(timeDeterminer));
             const content = document.querySelector('.content').children;
             content[0].querySelector('.previous').style.opacity = 0;
             content[0].querySelector('.previous').style.pointerEvents = 'none';
@@ -184,7 +210,7 @@ document.querySelector('#startButton').addEventListener('click', ()=>{
             submit.classList.remove('Next');
             submit.classList.add('submit');
             submit.addEventListener('click',e =>{
-                Submit.submitHandler();
+                Submit.submitHandler(category, numberOfQuestions, difficulty);
                 timeAutoSubmit = false;
 
             });
@@ -211,6 +237,9 @@ document.querySelector('#startButton').addEventListener('click', ()=>{
                     AppUI.contentToAppear(parent, content);
                 });
             });
+
+            //Re-test?
+            document.querySelector('.re-test').addEventListener('click', ()=> location.reload());
         });
     } 
 });

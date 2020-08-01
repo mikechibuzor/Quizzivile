@@ -363,7 +363,34 @@ and of course, the submit button in last content being displayed*/
 .lastPage .box .innerBox .dispScore{
     grid-column: 1/3;
     border: 1px solid white;
-    background: blue;
+    display: grid;
+    grid-gap: .5rem;
+    padding: .2rem;
+    grid-template-columns: 1fr 1fr;
+}
+.lastPage .box .innerBox .dispScore .dispHead{
+    grid-column: 1/3;
+    background: chocolate;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: .5rem;
+}
+.lastPage .box .innerBox .dispScore .dispHead h3{
+    font-size: 200%;
+    text-align: center;
+}
+.lastPage .box .innerBox .dispScore .moreInfo{
+    padding: .5rem;
+    grid-column: 1/2;
+    border: 1px solid white;
+}
+.lastPage .box .innerBox .dispScore .moreInfo p{
+    margin-left: .5rem;
+}
+.lastPage .box .innerBox .dispScore .imageCheer{
+    grid-column: 2/3;
+    border: 1px solid white;
 }
 .lastPage .box .innerBox .questionAnswers{
     grid-column: 1/2;
