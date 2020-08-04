@@ -183,6 +183,7 @@ let playerSelections = [];
 let score = 0;
 let timeAutoSubmit = true;
 
+
 document.querySelector('#startButton').addEventListener('click', ()=>{
     //code below gets the user's selections
     const category = document.querySelector('#category').value;
