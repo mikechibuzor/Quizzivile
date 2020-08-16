@@ -1,6 +1,7 @@
 * {
   padding: 0;
   margin: 0;
+  font-family: "Noto Sans JP", sans-serif;
   box-sizing: border-box;
 }
 body {
@@ -626,15 +627,7 @@ and of course, the submit button in last content being displayed*/
     font-size: 105%;
     text-align: justify;
   }
-  /* .container .header {
-    background: red;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .container .header > * {
-    border: 2px solid white;
-  }
+
   /*  */
   .container .header h1 {
     text-align: end;
