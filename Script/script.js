@@ -276,10 +276,3 @@ const animateFirstPage = () => {
 };
 const intervalTime = 10000 * 2;
 setInterval(animateFirstPage, intervalTime);
-
-//bug fix of challengeText on phone
-document.addEventListener("DOMContentLoaded", () => {
-  setInterval(() => {
-    document.querySelector(".challengeText").style.transform = "translateY(0)";
-  }, 5000);
-});
