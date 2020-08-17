@@ -17,14 +17,6 @@ class HttpRequest {
     }
   }
 }
-//not a very necessary class but it is here still to help structure the data
-class App {
-  constructor(questions) {
-    this.questionsList = questions;
-    this.score = 0;
-    this.answers = questions.answers;
-  }
-}
 class AppUI {
   //this method helps to randomize the options
   static randOptions() {
@@ -284,3 +276,10 @@ const animateFirstPage = () => {
 };
 const intervalTime = 10000 * 2;
 setInterval(animateFirstPage, intervalTime);
+
+//bug fix of challengeText on phone
+document.addEventListener("DOMContentLoaded", () => {
+  setInterval(() => {
+    document.querySelector(".challengeText").style.transform = "translateY(0)";
+  }, 5000);
+});
