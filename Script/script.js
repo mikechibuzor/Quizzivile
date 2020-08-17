@@ -274,5 +274,5 @@ document.querySelector("#startButton").addEventListener("click", () => {
 const animateFirstPage = () => {
   document.querySelector(".firstPage").classList.toggle("move");
 };
-const intervalTime = 10000 * 2;
+const intervalTime = 10000;
 setInterval(animateFirstPage, intervalTime);

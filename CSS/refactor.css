@@ -1,8 +1,9 @@
 * {
   padding: 0;
   margin: 0;
-  font-family: "Noto Sans JP", sans-serif;
-  font-family: "PT Mono", monospace;
+  /* font-family: "Noto Sans JP", sans-serif;
+  font-family: "PT Mono", monospace; */
+  font-family: "Bell MT";
   box-sizing: border-box;
 }
 body {
@@ -524,16 +525,12 @@ and of course, the submit button in last content being displayed*/
 
 /* Responsive web design */
 @media (max-width: 1024px) {
-  /* section .firstSection {
-    transform: translateY(-500%);
-  } */
   #secondSection .img {
     height: 28.33vh;
     width: 70%;
     margin-top: 3em;
   }
   #secondSection .challengeText {
-    /* justify-self: start; */
     width: 89%;
     margin-top: -14em;
     border-radius: 0.5em 1em;
@@ -546,9 +543,12 @@ and of course, the submit button in last content being displayed*/
 }
 @media (max-width: 768px) {
   .firstPage::before {
-    width: 110%;
+    width: 105%;
   }
   .firstPage.move::before {
+    transform: translateX(89%);
+  }
+  .firstPage.move #firstSection {
     transform: translateX(89%);
   }
   .firstPage.move #secondSection {
@@ -638,5 +638,26 @@ and of course, the submit button in last content being displayed*/
   }
   .container .content .cont #option {
     margin-left: -1.4em;
+  }
+  section .firstSection {
+    width: 20rem;
+    padding: 0;
+  }
+  section .firstSection > * {
+    margin: 0.2rem;
+  }
+}
+@media (max-width: 320px) {
+  body {
+    font-size: 80%;
+  }
+  #secondSection h1 {
+    font-size: 350%;
+  }
+  section .firstSection {
+    width: 18rem;
+  }
+  select {
+    width: 45%;
   }
 }
